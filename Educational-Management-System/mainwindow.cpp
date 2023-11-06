@@ -48,3 +48,9 @@ void MainWindow::on_LoginButton_LoginScreen_clicked()
     }
 }
 
+
+void MainWindow::on_BackButton_SignUpScreen_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(WELCOME_SCREEN);
+}
+

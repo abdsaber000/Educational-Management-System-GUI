@@ -30,6 +30,8 @@ private slots:
 
     void on_LoginButton_LoginScreen_clicked();
 
+    void on_BackButton_SignUpScreen_clicked();
+
 private:
     Ui::MainWindow *ui;
     enum screens {WELCOME_SCREEN , LOGIN_SCREEN , SIGNUP_SCREEN};
