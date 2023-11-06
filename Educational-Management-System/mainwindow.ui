@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>475</width>
-    <height>291</height>
+    <width>477</width>
+    <height>285</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -138,7 +138,165 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="SignUpScreen"/>
+    <widget class="QWidget" name="SignUpScreen">
+     <widget class="QLabel" name="NameLabel_SignUpScreen">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>20</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>name</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="EmailLabel_SignUpScreen">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>50</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>email</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="PasswordLabel_SignUpScreen">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>80</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>password</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ConfirmPasswordLabel_SignUpScreen">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>110</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>confirm password</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="RoleLabel_SignUpScreen">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>140</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>role</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="StudentRadio_SignUpScreen">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>140</y>
+        <width>89</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>student</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="TeacherRadio_SignUpScreen">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>140</y>
+        <width>89</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>teacher</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="SignUpButton_SignUpScreen">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>200</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>signup</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BackButton_SignUpScreen">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>200</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>back</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="NameTextEdit_SignUpScreen">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>10</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="EmailTextEdit_SignUpScreen">
+      <property name="geometry">
+       <rect>
+        <x>143</x>
+        <y>40</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="PasswordTextEdit_SignUpScreen">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>70</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="ConfirmPasswordTextEdit_SignUpScreen">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>100</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -146,7 +304,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>475</width>
+     <width>477</width>
      <height>22</height>
     </rect>
    </property>
