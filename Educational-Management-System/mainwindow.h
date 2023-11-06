@@ -9,6 +9,10 @@
 #include <QSqlQuery>
 #include <QMessageBox>
 #include "middleware.h"
+
+#define STUDENT "student"
+#define TEACHER "teacher"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -32,8 +36,11 @@ private slots:
 
     void on_BackButton_SignUpScreen_clicked();
 
+    void on_SignUpButton_SignUpScreen_clicked();
+
 private:
     Ui::MainWindow *ui;
+    MiddleWare middleware;
     enum screens {WELCOME_SCREEN , LOGIN_SCREEN , SIGNUP_SCREEN};
 };
 #endif // MAINWINDOW_H

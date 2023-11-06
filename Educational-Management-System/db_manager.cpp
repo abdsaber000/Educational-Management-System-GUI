@@ -56,3 +56,30 @@ bool DB_Manager::isOpen(){
 QString DB_Manager::lastError(){
     return db.lastError().text();
 }
+
+bool DB_Manager::isUserExist(QString email){
+    QSqlQuery query;
+    query.prepare("SELECT * FROM User WHERE email = :email");
+    query.bindValue(":email" , email);
+    if(query.exec()){
+        if(query.next()){
+            return true;
+        }
+        return false;
+    }else{
+        throw query.lastError();
+    }
+    return false;
+}
+
+void DB_Manager::addUser(QString name, QString email, QString password, QString type){
+    QSqlQuery query;
+    query.prepare("INSERT INTO User (name , email , password, type) VALUES (:name, :email , :password , :type)");
+    query.bindValue(":name" , name);
+    query.bindValue(":email" , email);
+    query.bindValue(":password" , password);
+    query.bindValue(":type" , type);
+    if(!query.exec()){
+        throw query.lastError();
+    }
+}

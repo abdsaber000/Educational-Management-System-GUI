@@ -18,6 +18,8 @@ public:
     DB_Manager();
     DB_Manager(QString path);
     std::vector<User*> getUser_EmailPassword(QString email , QString password);
+    bool isUserExist(QString email);
+    void addUser(QString name, QString email , QString password , QString type);
     bool isOpen();
     QString lastError();
 private:

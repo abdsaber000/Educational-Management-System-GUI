@@ -15,8 +15,8 @@ QString MiddleWare::login(QString email , QString password){
         std::vector<User*> users = DB.getUser_EmailPassword(email , password);
         if(users.size() != 1){
             if(users.size() == 0){
-                return "user not found";
-            }else return "duplicate logging";
+                return "user not found.";
+            }else return "duplicate logging.";
         }
 
         user = users.back();
@@ -24,6 +24,36 @@ QString MiddleWare::login(QString email , QString password){
     }catch(QSqlError error){
         return error.text();
     }
+
+    return "";
+}
+/*
+    - check if name is valid
+    - check if email is valid
+    - check if password is valid
+    - check if password equals confirmPassword
+    - check DB error
+    ==> create a user
+*/
+QString MiddleWare::Signup(QString name, QString email, QString password, QString confirmPassword, QString type){
+    if(!User::isValidName(name)) return "name is not valid.";
+    if(!User::isValidEmail(email)) return "email is not valid.";
+    if(!User::isValidPassword(password)) return "password is not valid.";
+    if(password != confirmPassword) return "password and confirm password are not the same";
+
+    try{
+        if(DB.isUserExist(email)){
+            return "user email already exist.";
+        }
+
+        DB.addUser(name , email , password , type);
+
+        user = DB.getUser_EmailPassword(email , password).back();
+    }catch(QSqlError error){
+        return error.text();
+    }
+
+
 
     return "";
 }

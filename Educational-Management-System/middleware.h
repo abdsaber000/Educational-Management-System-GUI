@@ -16,6 +16,8 @@ private:
 public:
     MiddleWare();
     QString login(QString email , QString password);
+    QString Signup(QString name , QString email , QString password
+                   , QString confirmPassword , QString type);
     static void set_isLogged(bool status);
     bool get_isLogged();
 };

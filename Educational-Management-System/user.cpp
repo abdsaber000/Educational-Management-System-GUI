@@ -24,3 +24,7 @@ bool User::isValidPassword(QString password){
 
     return regMatch.hasMatch() && password.size() >= 8;
 }
+
+bool User::isValidName(QString name){
+    return name.size() > 0;
+}
