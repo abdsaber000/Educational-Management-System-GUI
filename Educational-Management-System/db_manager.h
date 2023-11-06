@@ -8,11 +8,18 @@
 #include <QtDebug>
 #include <QDebug>
 #include <QApplication>
+#include <vector>
+#include "user.h"
+#include "student.h"
+#include "teacher.h"
 class DB_Manager
 {
 public:
     DB_Manager();
-    QString getUser_EmailPassword(QString email , QString password);
+    DB_Manager(QString path);
+    std::vector<User*> getUser_EmailPassword(QString email , QString password);
+    bool isOpen();
+    QString lastError();
 private:
     QSqlDatabase db;
 };

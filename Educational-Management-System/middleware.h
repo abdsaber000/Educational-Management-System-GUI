@@ -4,14 +4,22 @@
 #include "db_manager.h"
 #include "user.h"
 #include <QApplication>
+
+#define PATH  "C:\\Users\\Dell\\Documents\\Educational-Management-System-GUI\\Educational-Management-System\\database.db"
 class MiddleWare
 {
 private:
 
     static DB_Manager DB;
-    static User user;
+    static User *user;
+    static bool isLogged;
 public:
     MiddleWare();
+    QString login(QString email , QString password);
+    static void set_isLogged(bool status);
+    bool get_isLogged();
 };
+
+
 
 #endif // MIDDLEWARE_H

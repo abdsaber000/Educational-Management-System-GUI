@@ -33,3 +33,18 @@ void MainWindow::on_SignupButton_WelcomeScreen_clicked()
     ui->stackedWidget->setCurrentIndex(SIGNUP_SCREEN);
 }
 
+
+void MainWindow::on_LoginButton_LoginScreen_clicked()
+{
+    QString email = ui->EmailTextEdit->toPlainText();
+    QString password = ui->PasswordTextEdit->toPlainText();
+
+    MiddleWare middleware;
+    QString error = middleware.login(email , password);
+    if(middleware.get_isLogged() && !error.size()){
+        QMessageBox::information(this , "Logged in!" , "you logged in.");
+    }else{
+        QMessageBox::information(this , "Error" , error);
+    }
+}
+

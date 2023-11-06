@@ -5,3 +5,7 @@ User::User(QString name , QString email , QString password , int id) :
 {
 
 }
+
+User::User(){
+
+}

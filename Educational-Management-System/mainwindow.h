@@ -8,6 +8,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QMessageBox>
+#include "middleware.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -26,6 +27,8 @@ private slots:
     void on_BackButton_LoginScreen_clicked();
 
     void on_SignupButton_WelcomeScreen_clicked();
+
+    void on_LoginButton_LoginScreen_clicked();
 
 private:
     Ui::MainWindow *ui;

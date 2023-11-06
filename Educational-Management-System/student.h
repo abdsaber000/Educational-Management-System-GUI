@@ -3,7 +3,7 @@
 
 #include "user.h"
 
-class Student : User
+class Student : public User
 {
 public:
     Student(QString name , QString email , QString password , int id) ;

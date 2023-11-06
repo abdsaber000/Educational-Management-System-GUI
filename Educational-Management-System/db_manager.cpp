@@ -1,27 +1,58 @@
 #include "db_manager.h"
-
-DB_Manager::DB_Manager()
+#include <iostream>
+DB_Manager::DB_Manager(QString path)
 {
-    QString path = "C:\\Users\\Dell\\Documents\\Educational-Management-System-GUI\\Educational-Management-System\\database.db";
+
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(path);
 
     if(!db.open()){
-//        qDebug << "failed to connect";
+
     }
 }
 
+DB_Manager::DB_Manager(){
 
-QString DB_Manager::getUser_EmailPassword(QString email , QString password){
-    QSqlQuery query(db);
+}
+
+std::vector<User*> DB_Manager::getUser_EmailPassword(QString email , QString password){
+    QSqlQuery query;
     QString command = "SELECT * FROM User WHERE email = :email AND password = :password";
     query.prepare(command);
     query.bindValue(":email" , email);
     query.bindValue(":password" , password);
-    if(query.exec()){
-        return "true";
-    }
 
-    QString res = query.lastError().text();
-    return res;
+    if(query.exec()){
+        std::vector<User*> query_results;
+
+        while(query.next()){
+
+            QString name = query.value(0).toString();
+            QString email = query.value(1).toString();
+            QString password = query.value(2).toString();
+            int id = query.value(3).toInt();
+            QString type = query.value(4).toString();
+
+            if(type == "student"){
+                Student student = Student(name , email , password , id);
+                query_results.push_back(&student);
+            }else if(type == "teacher"){
+                Teacher teacher = Teacher(name , email , password , id);
+                query_results.push_back(&teacher);
+            }
+        }
+
+        return query_results;
+    }else{
+        throw query.lastError();
+    }
+    return {};
+}
+
+bool DB_Manager::isOpen(){
+    return db.isOpen();
+}
+
+QString DB_Manager::lastError(){
+    return db.lastError().text();
 }
