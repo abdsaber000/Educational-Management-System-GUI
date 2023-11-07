@@ -28,3 +28,11 @@ bool User::isValidPassword(QString password){
 bool User::isValidName(QString name){
     return name.size() > 0;
 }
+
+QString User::get_name(){
+    return name;
+}
+
+QString User::get_type(){
+    return type;
+}

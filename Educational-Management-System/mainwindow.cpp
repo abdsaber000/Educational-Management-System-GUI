@@ -6,11 +6,13 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->stackedWidget->setCurrentIndex(WELCOME_SCREEN);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete middleware;
 }
 
 
@@ -40,12 +42,14 @@ void MainWindow::on_LoginButton_LoginScreen_clicked()
     QString password = ui->PasswordTextEdit->toPlainText();
 
 
-    QString error = middleware.login(email , password);
-    if(middleware.get_isLogged() && !error.size()){
-        QMessageBox::information(this , "Logged in!" , "you logged in.");
+    QString error = middleware->login(email , password);
+    if(middleware->get_isLogged() && !error.size()){
+
+        DashboardScreen();
     }else{
         QMessageBox::information(this , "Error" , error);
     }
+
 }
 
 
@@ -69,12 +73,26 @@ void MainWindow::on_SignUpButton_SignUpScreen_clicked()
         type = TEACHER;
     }
 
-    QString error = middleware.Signup(name , email , password , confirmPassword, type);
+    QString error = middleware->Signup(name , email , password , confirmPassword, type);
 
     if(!error.size()){
-        QMessageBox::information(this , "Done" , "Sign up is done");
+
+        DashboardScreen();
     }else{
         QMessageBox::information(this, "Error" , error);
     }
 }
 
+
+void MainWindow::DashboardScreen(){
+
+
+    QString welcomeMessage = "Welcome ";
+    if(middleware->get_user_type() == STUDENT){
+        welcomeMessage = welcomeMessage + STUDENT + " ";
+    }else welcomeMessage = welcomeMessage + TEACHER +" ";
+    QString userName = middleware->get_user_name();
+    welcomeMessage += userName;
+    ui->WelcomeLabel_DashboardScreen->setText(welcomeMessage);
+    ui->stackedWidget->setCurrentIndex(DASHBOARD_SCREEN);
+}

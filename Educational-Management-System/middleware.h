@@ -13,6 +13,7 @@ private:
     static DB_Manager DB;
     static User *user;
     static bool isLogged;
+
 public:
     MiddleWare();
     QString login(QString email , QString password);
@@ -20,6 +21,9 @@ public:
                    , QString confirmPassword , QString type);
     static void set_isLogged(bool status);
     bool get_isLogged();
+    User * get_user();
+    QString get_user_name();
+    QString get_user_type();
 };
 
 

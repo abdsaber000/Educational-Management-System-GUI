@@ -4,10 +4,14 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QSqlRecord>
 #include <QMessageBox>
 #include <QtDebug>
 #include <QDebug>
 #include <QApplication>
+#include <QStringDecoder>
+#include <QStringEncoder>
+#include <QTextCodec>
 #include <vector>
 #include "user.h"
 #include "student.h"
@@ -24,6 +28,7 @@ public:
     QString lastError();
 private:
     QSqlDatabase db;
+    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
 };
 
 

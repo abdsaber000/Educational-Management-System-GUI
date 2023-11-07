@@ -49,6 +49,7 @@ QString MiddleWare::Signup(QString name, QString email, QString password, QStrin
         DB.addUser(name , email , password , type);
 
         user = DB.getUser_EmailPassword(email , password).back();
+        isLogged = true;
     }catch(QSqlError error){
         return error.text();
     }
@@ -60,6 +61,19 @@ QString MiddleWare::Signup(QString name, QString email, QString password, QStrin
 
 bool MiddleWare::get_isLogged(){
     return isLogged;
+}
+
+
+User * MiddleWare::get_user(){
+    return user;
+}
+
+QString MiddleWare::get_user_name(){
+    return user->get_name();
+}
+
+QString MiddleWare::get_user_type(){
+    return user->get_type();
 }
 
 /* initialization */

@@ -38,9 +38,12 @@ private slots:
 
     void on_SignUpButton_SignUpScreen_clicked();
 
+
+
 private:
     Ui::MainWindow *ui;
-    MiddleWare middleware;
-    enum screens {WELCOME_SCREEN , LOGIN_SCREEN , SIGNUP_SCREEN};
+    MiddleWare *middleware;
+    void DashboardScreen();
+    enum screens {WELCOME_SCREEN , LOGIN_SCREEN , SIGNUP_SCREEN , DASHBOARD_SCREEN};
 };
 #endif // MAINWINDOW_H

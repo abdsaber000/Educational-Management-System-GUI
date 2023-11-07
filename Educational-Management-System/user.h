@@ -12,6 +12,8 @@ public:
     static bool isValidEmail(QString email);
     static bool isValidPassword(QString password);
     static bool isValidName(QString name);
+    QString get_name();
+    QString get_type();
 protected:
     QString name;
     QString email;

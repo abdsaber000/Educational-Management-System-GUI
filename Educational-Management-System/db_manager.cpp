@@ -1,5 +1,6 @@
 #include "db_manager.h"
 #include <iostream>
+
 DB_Manager::DB_Manager(QString path)
 {
 
@@ -9,6 +10,7 @@ DB_Manager::DB_Manager(QString path)
     if(!db.open()){
 
     }
+
 }
 
 DB_Manager::DB_Manager(){
@@ -24,21 +26,24 @@ std::vector<User*> DB_Manager::getUser_EmailPassword(QString email , QString pas
 
     if(query.exec()){
         std::vector<User*> query_results;
+        int nameIndex = query.record().indexOf("name");
+        int emailIndex = query.record().indexOf("email");
+        int passwordIndex = query.record().indexOf("password");
+        int idIndex = query.record().indexOf("id");
+        int typeIndex = query.record().indexOf("type");
 
         while(query.next()){
 
-            QString name = query.value(0).toString();
-            QString email = query.value(1).toString();
-            QString password = query.value(2).toString();
-            int id = query.value(3).toInt();
-            QString type = query.value(4).toString();
+            QString name = codec->toUnicode(query.value(nameIndex).toByteArray());
+            QString email = codec->toUnicode(query.value(emailIndex).toByteArray());
+            QString password = codec->toUnicode(query.value(passwordIndex).toByteArray());
+            int id = query.value(idIndex).toInt();
+            QString type = codec->toUnicode(query.value(typeIndex).toByteArray());
 
             if(type == "student"){
-                Student student = Student(name , email , password , id);
-                query_results.push_back(&student);
+                query_results.push_back(new Student(name , email , password , id));
             }else if(type == "teacher"){
-                Teacher teacher = Teacher(name , email , password , id);
-                query_results.push_back(&teacher);
+                query_results.push_back(new Teacher(name , email , password , id));
             }
         }
 
