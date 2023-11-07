@@ -5,9 +5,6 @@ MiddleWare::MiddleWare()
 
 }
 
-void MiddleWare::set_isLogged(bool status){
-    isLogged = status;
-}
 
 QString MiddleWare::login(QString email , QString password){
     if(!DB.isOpen()) return "Database Failed";
@@ -59,6 +56,13 @@ QString MiddleWare::Signup(QString name, QString email, QString password, QStrin
     return "";
 }
 
+void MiddleWare::logout(){
+    set_user(new User());
+    set_isLogged(false);
+}
+
+/* getters and setters */
+
 bool MiddleWare::get_isLogged(){
     return isLogged;
 }
@@ -74,6 +78,14 @@ QString MiddleWare::get_user_name(){
 
 QString MiddleWare::get_user_type(){
     return user->get_type();
+}
+
+void MiddleWare::set_isLogged(bool status){
+    this->isLogged = status;
+}
+
+void MiddleWare::set_user(User *user){
+    this->user = user;
 }
 
 /* initialization */

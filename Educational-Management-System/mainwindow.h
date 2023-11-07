@@ -12,7 +12,7 @@
 
 #define STUDENT "student"
 #define TEACHER "teacher"
-
+enum screens {WELCOME_SCREEN , LOGIN_SCREEN , SIGNUP_SCREEN , DASHBOARD_SCREEN};
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -40,10 +40,14 @@ private slots:
 
 
 
+    void on_LogoutButton_DashboardScreen_clicked();
+
 private:
     Ui::MainWindow *ui;
     MiddleWare *middleware;
     void DashboardScreen();
-    enum screens {WELCOME_SCREEN , LOGIN_SCREEN , SIGNUP_SCREEN , DASHBOARD_SCREEN};
+    void DashboardStudent();
+    void DashboardTeacher();
+
 };
 #endif // MAINWINDOW_H

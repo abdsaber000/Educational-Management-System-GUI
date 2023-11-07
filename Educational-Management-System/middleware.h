@@ -19,7 +19,9 @@ public:
     QString login(QString email , QString password);
     QString Signup(QString name , QString email , QString password
                    , QString confirmPassword , QString type);
-    static void set_isLogged(bool status);
+    void logout();
+    void set_isLogged(bool status);
+    void set_user(User * user);
     bool get_isLogged();
     User * get_user();
     QString get_user_name();

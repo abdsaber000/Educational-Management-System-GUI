@@ -314,7 +314,7 @@
        <string>نجرب الكلام العربي</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="ViewCoursesButton_DashboardScreen">
+     <widget class="QPushButton" name="ViewEnrolledCoursesButton_Dashboard">
       <property name="geometry">
        <rect>
         <x>50</x>
@@ -327,7 +327,7 @@
        <string>View my courses</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="ExploreCoursesButton_DashboardScreen">
+     <widget class="QPushButton" name="ExploreCoursesButton_Dashboard">
       <property name="geometry">
        <rect>
         <x>50</x>
@@ -366,6 +366,39 @@
        <string>Logout</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="ViewCreatedCoursesButton_Dashboard">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>60</y>
+        <width>161</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>View created courses</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="CreateCourseButton_Dashboard">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>110</y>
+        <width>161</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Create course</string>
+      </property>
+     </widget>
+     <zorder>ViewEnrolledCoursesButton_Dashboard</zorder>
+     <zorder>WelcomeLabel_DashboardScreen</zorder>
+     <zorder>ExploreCoursesButton_Dashboard</zorder>
+     <zorder>SettingsButton_DashboardScreen</zorder>
+     <zorder>LogoutButton_DashboardScreen</zorder>
+     <zorder>ViewCreatedCoursesButton_Dashboard</zorder>
+     <zorder>CreateCourseButton_Dashboard</zorder>
     </widget>
    </widget>
   </widget>

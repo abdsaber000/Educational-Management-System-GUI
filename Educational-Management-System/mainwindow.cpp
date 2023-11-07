@@ -44,6 +44,9 @@ void MainWindow::on_LoginButton_LoginScreen_clicked()
 
     QString error = middleware->login(email , password);
     if(middleware->get_isLogged() && !error.size()){
+        /* reset login screen */
+        ui->EmailTextEdit->setText("");
+        ui->PasswordTextEdit->setText("");
 
         DashboardScreen();
     }else{
@@ -76,6 +79,11 @@ void MainWindow::on_SignUpButton_SignUpScreen_clicked()
     QString error = middleware->Signup(name , email , password , confirmPassword, type);
 
     if(!error.size()){
+        /* reset signup screen */
+        ui->NameTextEdit_SignUpScreen->setText("");
+        ui->EmailTextEdit_SignUpScreen->setText("");
+        ui->PasswordTextEdit_SignUpScreen->setText("");
+        ui->ConfirmPasswordTextEdit_SignUpScreen->setText("");
 
         DashboardScreen();
     }else{
@@ -86,13 +94,51 @@ void MainWindow::on_SignUpButton_SignUpScreen_clicked()
 
 void MainWindow::DashboardScreen(){
 
+    /* reset dashboard screen */
 
-    QString welcomeMessage = "Welcome ";
+    ui->ViewCreatedCoursesButton_Dashboard->hide();
+    ui->ViewEnrolledCoursesButton_Dashboard->hide();
+    ui->CreateCourseButton_Dashboard->hide();
+    ui->ExploreCoursesButton_Dashboard->hide();
+    ui->WelcomeLabel_DashboardScreen->hide();
+
     if(middleware->get_user_type() == STUDENT){
-        welcomeMessage = welcomeMessage + STUDENT + " ";
-    }else welcomeMessage = welcomeMessage + TEACHER +" ";
-    QString userName = middleware->get_user_name();
-    welcomeMessage += userName;
-    ui->WelcomeLabel_DashboardScreen->setText(welcomeMessage);
+        DashboardStudent();
+    }else{
+        DashboardTeacher();
+    }
+
     ui->stackedWidget->setCurrentIndex(DASHBOARD_SCREEN);
+
 }
+
+void MainWindow::DashboardStudent(){
+    QString welcomeMessage = "Welcome student ";
+    welcomeMessage += middleware->get_user_name();
+    ui->WelcomeLabel_DashboardScreen->setText(welcomeMessage);
+
+    ui->WelcomeLabel_DashboardScreen->show();
+    ui->ViewEnrolledCoursesButton_Dashboard->show();
+    ui->ExploreCoursesButton_Dashboard->show();
+
+}
+
+void MainWindow::DashboardTeacher(){
+    QString welcomeMessage = "Welcome teacher ";
+    welcomeMessage += middleware->get_user_name();
+    ui->WelcomeLabel_DashboardScreen->setText(welcomeMessage);
+
+    ui->WelcomeLabel_DashboardScreen->show();
+    ui->ViewCreatedCoursesButton_Dashboard->show();
+    ui->CreateCourseButton_Dashboard->show();
+}
+
+void MainWindow::on_LogoutButton_DashboardScreen_clicked()
+{
+    middleware->logout();
+
+    ui->stackedWidget->setCurrentIndex(WELCOME_SCREEN);
+}
+
+
+
