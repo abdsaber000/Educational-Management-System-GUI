@@ -20,6 +20,7 @@ public:
     QString Signup(QString name , QString email , QString password
                    , QString confirmPassword , QString type);
     void logout();
+    QString createCourse(QString courseName);
     void set_isLogged(bool status);
     void set_user(User * user);
     bool get_isLogged();

@@ -36,3 +36,7 @@ QString User::get_name(){
 QString User::get_type(){
     return type;
 }
+
+int User::get_id(){
+    return id;
+}

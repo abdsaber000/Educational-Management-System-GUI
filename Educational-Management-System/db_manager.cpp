@@ -88,3 +88,14 @@ void DB_Manager::addUser(QString name, QString email, QString password, QString 
         throw query.lastError();
     }
 }
+
+void DB_Manager::addCourse(QString courseName , int teacherId){
+    QSqlQuery query;
+
+    query.prepare("INSERT INTO Course (courseName , teacherId) VALUES (:courseName , :teacherId)");
+    query.bindValue(":courseName" , courseName);
+    query.bindValue(":teacherId" , teacherId);
+    if(!query.exec()){
+        throw query.lastError();
+    }
+}

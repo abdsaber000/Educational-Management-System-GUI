@@ -141,4 +141,42 @@ void MainWindow::on_LogoutButton_DashboardScreen_clicked()
 }
 
 
+void MainWindow::on_SettingsButton_DashboardScreen_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(SETTINGS_SCREEN);
+}
+
+
+void MainWindow::on_BackButton_SettingsScreen_clicked()
+{
+    DashboardScreen();
+}
+
+
+
+void MainWindow::on_CreateCourseButton_Dashboard_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(CREATE_COURSE_SCREEN);
+}
+
+
+void MainWindow::on_BackButton_CreateCourse_clicked()
+{
+    ui->CourseNametextEdit_CreateCourse->setText("");
+    ui->stackedWidget->setCurrentIndex(DASHBOARD_SCREEN);
+}
+
+
+void MainWindow::on_CreateCourseButton_CreateCourse_clicked()
+{
+    QString courseName = ui->CourseNametextEdit_CreateCourse->toPlainText();
+    QString error = middleware->createCourse(courseName);
+
+    if(error.size()){
+        QMessageBox::information(this , "Error" , error);
+    }else{
+        QMessageBox::information(this , "Done" , "Your course is created !");
+        ui->CourseNametextEdit_CreateCourse->setText("");
+    }
+}
 

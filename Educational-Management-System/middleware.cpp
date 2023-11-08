@@ -61,6 +61,15 @@ void MiddleWare::logout(){
     set_isLogged(false);
 }
 
+QString MiddleWare::createCourse(QString courseName){
+    try{
+        DB.addCourse(courseName , user->get_id());
+    }catch(QSqlError error){
+        return error.text();
+    }
+    return "";
+}
+
 /* getters and setters */
 
 bool MiddleWare::get_isLogged(){

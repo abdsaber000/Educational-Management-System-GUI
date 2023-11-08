@@ -14,6 +14,7 @@ public:
     static bool isValidName(QString name);
     QString get_name();
     QString get_type();
+    int get_id();
 protected:
     QString name;
     QString email;

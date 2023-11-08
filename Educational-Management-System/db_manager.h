@@ -24,6 +24,7 @@ public:
     std::vector<User*> getUser_EmailPassword(QString email , QString password);
     bool isUserExist(QString email);
     void addUser(QString name, QString email , QString password , QString type);
+    void addCourse(QString courseName , int teacherId);
     bool isOpen();
     QString lastError();
 private:

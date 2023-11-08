@@ -12,7 +12,12 @@
 
 #define STUDENT "student"
 #define TEACHER "teacher"
-enum screens {WELCOME_SCREEN , LOGIN_SCREEN , SIGNUP_SCREEN , DASHBOARD_SCREEN};
+
+enum screens {WELCOME_SCREEN , LOGIN_SCREEN , SIGNUP_SCREEN , DASHBOARD_SCREEN
+, SETTINGS_SCREEN, VIEW_ENROLLED_COURSES_SCREEN, EXPLORE_COURSES_SCREEN
+, CREATE_COURSE_SCREEN};
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -38,9 +43,19 @@ private slots:
 
     void on_SignUpButton_SignUpScreen_clicked();
 
-
-
     void on_LogoutButton_DashboardScreen_clicked();
+
+    void on_BackButton_SettingsScreen_clicked();
+
+    void on_SettingsButton_DashboardScreen_clicked();
+
+    void on_CreateCourseButton_Dashboard_clicked();
+
+
+
+    void on_BackButton_CreateCourse_clicked();
+
+    void on_CreateCourseButton_CreateCourse_clicked();
 
 private:
     Ui::MainWindow *ui;
