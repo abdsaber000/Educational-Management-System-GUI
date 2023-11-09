@@ -13,9 +13,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     middleware.cpp \
+    screens/create_course_screen.cpp \
+    screens/dashboard_screen.cpp \
+    screens/login_screen.cpp \
+    screens/signup_screen.cpp \
+    screens/welcome_screen.cpp \
     student.cpp \
     teacher.cpp \
-    user.cpp
+    user.cpp \
 
 HEADERS += \
     db_manager.h \
