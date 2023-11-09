@@ -68,3 +68,9 @@ void MainWindow::on_CreateCourseButton_Dashboard_clicked()
 {
     ui->stackedWidget->setCurrentIndex(CREATE_COURSE_SCREEN);
 }
+
+
+void MainWindow::on_ExploreCoursesButton_Dashboard_clicked()
+{
+    ExploreCourses();
+}

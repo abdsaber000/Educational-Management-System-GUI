@@ -57,12 +57,17 @@ private slots:
 
     void on_CreateCourseButton_CreateCourse_clicked();
 
+    void on_ExploreCoursesButton_Dashboard_clicked();
+
+    void on_BackButton_ExploreCoursesScreen_clicked();
+
 private:
     Ui::MainWindow *ui;
     MiddleWare *middleware;
     void DashboardScreen();
     void DashboardStudent();
     void DashboardTeacher();
+    void ExploreCourses();
 
 };
 #endif // MAINWINDOW_H

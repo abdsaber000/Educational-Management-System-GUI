@@ -70,6 +70,15 @@ QString MiddleWare::createCourse(QString courseName){
     return "";
 }
 
+QString MiddleWare::getAllCourses(QSqlQueryModel * &model){
+    try{
+        model = DB.getAllCourses();
+    }catch(QSqlError error){
+        return error.text();
+    }
+    return "";
+}
+
 /* getters and setters */
 
 bool MiddleWare::get_isLogged(){

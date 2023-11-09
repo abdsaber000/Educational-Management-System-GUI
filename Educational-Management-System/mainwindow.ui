@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="WelcomeScreen">
      <widget class="QLabel" name="WelcomeLabel_WelcomeScreen">
@@ -455,7 +455,31 @@
      </widget>
     </widget>
     <widget class="QWidget" name="EnrolledCoursesScreen"/>
-    <widget class="QWidget" name="ExploreCoursesScreen"/>
+    <widget class="QWidget" name="ExploreCoursesScreen">
+     <widget class="QTableView" name="CoursesTableView_ExploreCoursesScreen">
+      <property name="geometry">
+       <rect>
+        <x>65</x>
+        <y>10</y>
+        <width>331</width>
+        <height>192</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BackButton_ExploreCoursesScreen">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>210</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>back</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="CreateCourseScreen">
      <widget class="QLabel" name="EnterCourseLabel_CreateCourse">
       <property name="geometry">

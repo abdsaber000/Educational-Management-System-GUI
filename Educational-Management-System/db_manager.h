@@ -12,6 +12,7 @@
 #include <QStringDecoder>
 #include <QStringEncoder>
 #include <QTextCodec>
+#include <QSqlQueryModel>
 #include <vector>
 #include "user.h"
 #include "student.h"
@@ -25,6 +26,7 @@ public:
     bool isUserExist(QString email);
     void addUser(QString name, QString email , QString password , QString type);
     void addCourse(QString courseName , int teacherId);
+    QSqlQueryModel * getAllCourses();
     bool isOpen();
     QString lastError();
 private:

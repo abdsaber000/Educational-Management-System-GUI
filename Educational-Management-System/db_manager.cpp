@@ -99,3 +99,19 @@ void DB_Manager::addCourse(QString courseName , int teacherId){
         throw query.lastError();
     }
 }
+
+QSqlQueryModel * DB_Manager::getAllCourses(){
+    QSqlQuery query;
+    query.prepare("SELECT Course.courseName AS 'Course Name' , User.name AS 'Teacher' "
+                  "FROM Course , User WHERE User.id = Course.teacherId");
+
+
+    if(!query.exec()){
+        throw query.lastError();
+    }
+
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery(query);
+    return model;
+
+}

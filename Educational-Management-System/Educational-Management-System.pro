@@ -15,6 +15,7 @@ SOURCES += \
     middleware.cpp \
     screens/create_course_screen.cpp \
     screens/dashboard_screen.cpp \
+    screens/explore_courses_screen.cpp \
     screens/login_screen.cpp \
     screens/signup_screen.cpp \
     screens/welcome_screen.cpp \

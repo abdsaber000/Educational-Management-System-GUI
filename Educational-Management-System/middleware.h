@@ -21,6 +21,7 @@ public:
                    , QString confirmPassword , QString type);
     void logout();
     QString createCourse(QString courseName);
+    QString getAllCourses(QSqlQueryModel * & model);
     void set_isLogged(bool status);
     void set_user(User * user);
     bool get_isLogged();
