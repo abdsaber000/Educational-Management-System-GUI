@@ -11,6 +11,7 @@ DB_Manager::DB_Manager(QString path)
 
     }
 
+    db.exec("PRAGMA locking_mode = EXCLUSIVE");
 }
 
 DB_Manager::DB_Manager(){
@@ -114,4 +115,39 @@ QSqlQueryModel * DB_Manager::getAllCourses(){
     model->setQuery(query);
     return model;
 
+}
+
+
+void DB_Manager::updateUserName(int userId , QString userName){
+
+    QSqlQuery query;
+
+    query.prepare("UPDATE User SET name = :name WHERE id = :id");
+
+    query.bindValue(":name" , userName);
+    query.bindValue(":id" , userId);
+    if(!query.exec())
+        throw query.lastError();
+}
+
+void DB_Manager::updateUserEmail(int userId, QString newEmail){
+    QSqlQuery query;
+
+    query.prepare("UPDATE User SET email = :email WHERE id = :id");
+
+    query.bindValue(":email" , newEmail);
+    query.bindValue(":id" , userId);
+    if(!query.exec())
+        throw query.lastError();
+}
+
+void DB_Manager::updateUserPassword(int userId, QString newPassword){
+    QSqlQuery query;
+
+    query.prepare("UPDATE User SET password = :password WHERE id = :id");
+
+    query.bindValue(":password" , newPassword);
+    query.bindValue(":id" , userId);
+    if(!query.exec())
+        throw query.lastError();
 }

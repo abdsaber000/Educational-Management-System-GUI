@@ -40,3 +40,19 @@ QString User::get_type(){
 int User::get_id(){
     return id;
 }
+
+QString User::get_password(){
+    return password;
+}
+
+void User::set_name(QString name){
+    this->name = name;
+}
+
+void User::set_email(QString email){
+    this->email = email;
+}
+
+void User::set_password(QString password){
+    this->password = password;
+}

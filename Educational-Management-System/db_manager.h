@@ -27,6 +27,9 @@ public:
     void addUser(QString name, QString email , QString password , QString type);
     void addCourse(QString courseName , int teacherId);
     QSqlQueryModel * getAllCourses();
+    void updateUserName(int userId , QString newName);
+    void updateUserEmail(int userId , QString newEmail);
+    void updateUserPassword(int userId , QString newPassword);
     bool isOpen();
     QString lastError();
 private:

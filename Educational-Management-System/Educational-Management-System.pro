@@ -13,10 +13,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     middleware.cpp \
+    screens/change_email_screen.cpp \
+    screens/change_name_screen.cpp \
+    screens/change_password_screen.cpp \
     screens/create_course_screen.cpp \
     screens/dashboard_screen.cpp \
     screens/explore_courses_screen.cpp \
     screens/login_screen.cpp \
+    screens/settings_screen.cpp \
     screens/signup_screen.cpp \
     screens/welcome_screen.cpp \
     student.cpp \

@@ -79,6 +79,47 @@ QString MiddleWare::getAllCourses(QSqlQueryModel * &model){
     return "";
 }
 
+QString MiddleWare::changeUserName(QString newName , QString password){
+    if(password != user->get_password()) return "password is wrong.";
+    if(!user->isValidName(newName)) return "New name is not valid.";
+
+    try{
+        DB.updateUserName(user->get_id() , newName);
+        user->set_name(newName);
+    }catch(QSqlError error){
+        return error.text();
+    }
+
+    return "";
+}
+
+QString MiddleWare::changeUserEmail(QString newEmail, QString password){
+    if(password != user->get_password()) return "password is wrong.";
+    if(!user->isValidEmail(newEmail)) return "New email is not valid.";
+
+    try{
+        DB.updateUserEmail(user->get_id() , newEmail);
+        user->set_email(newEmail);
+    }catch(QSqlError error){
+        return error.text();
+    }
+    return "";
+}
+
+QString MiddleWare::changeUserPassword(QString oldPassword, QString newPassword, QString confirmPassword){
+    if(oldPassword != user->get_password()) return "Old password is wrong.";
+    if(newPassword != confirmPassword) return "Confirm password is not the same as the new password.";
+    if(!user->isValidPassword(newPassword)) return "New password is not valid.";
+
+    try{
+        DB.updateUserPassword(user->get_id() , newPassword);
+        user->set_password(newPassword);
+    }catch(QSqlError error){
+        return error.text();
+    }
+    return "";
+}
+
 /* getters and setters */
 
 bool MiddleWare::get_isLogged(){

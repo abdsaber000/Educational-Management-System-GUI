@@ -57,13 +57,6 @@ void MainWindow::on_SettingsButton_DashboardScreen_clicked()
 }
 
 
-void MainWindow::on_BackButton_SettingsScreen_clicked()
-{
-    DashboardScreen();
-}
-
-
-
 void MainWindow::on_CreateCourseButton_Dashboard_clicked()
 {
     ui->stackedWidget->setCurrentIndex(CREATE_COURSE_SCREEN);

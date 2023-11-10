@@ -22,6 +22,9 @@ public:
     void logout();
     QString createCourse(QString courseName);
     QString getAllCourses(QSqlQueryModel * & model);
+    QString changeUserName(QString newName , QString password);
+    QString changeUserEmail(QString newEmail , QString password);
+    QString changeUserPassword(QString oldPassword , QString newPassword , QString confirmPassword);
     void set_isLogged(bool status);
     void set_user(User * user);
     bool get_isLogged();
