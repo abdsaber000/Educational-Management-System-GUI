@@ -67,3 +67,9 @@ void MainWindow::on_ExploreCoursesButton_Dashboard_clicked()
 {
     ExploreCourses();
 }
+
+
+void MainWindow::on_ViewEnrolledCoursesButton_Dashboard_clicked()
+{
+    EnrolledCourses();
+}

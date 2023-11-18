@@ -24,12 +24,16 @@ public:
     DB_Manager(QString path);
     std::vector<User*> getUser_EmailPassword(QString email , QString password);
     bool isUserExist(QString email);
+    bool isCourseExist(int courseId);
     void addUser(QString name, QString email , QString password , QString type);
     void addCourse(QString courseName , int teacherId);
+    void addEnrollment(int courseId , int userId);
     QSqlQueryModel * getAllCourses();
+    QSqlQueryModel * getEnrolledCourses(int userId);
     void updateUserName(int userId , QString newName);
     void updateUserEmail(int userId , QString newEmail);
     void updateUserPassword(int userId , QString newPassword);
+
     bool isOpen();
     QString lastError();
 private:

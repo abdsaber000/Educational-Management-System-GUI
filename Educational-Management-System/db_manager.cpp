@@ -78,6 +78,22 @@ bool DB_Manager::isUserExist(QString email){
     return false;
 }
 
+bool DB_Manager::isCourseExist(int courseId){
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Course WHERE courseId = :courseId");
+    query.bindValue(":courseId" ,  courseId);
+
+    if(query.exec()){
+        if(query.next()){
+            return true;
+        }
+        return false;
+    }else{
+        throw query.lastError();
+    }
+    return false;
+}
+
 void DB_Manager::addUser(QString name, QString email, QString password, QString type){
     QSqlQuery query;
     query.prepare("INSERT INTO User (name , email , password, type) VALUES (:name, :email , :password , :type)");
@@ -101,6 +117,18 @@ void DB_Manager::addCourse(QString courseName , int teacherId){
     }
 }
 
+void DB_Manager::addEnrollment(int courseId , int userId){
+    QSqlQuery query;
+    query.prepare("INSERT INTO Enrollments (studentId , courseId) VALUES (:studentId , :courseId)");
+    query.bindValue(":studentId" , userId);
+    query.bindValue(":courseId" , courseId);
+
+    if(!query.exec()){
+        throw query.lastError();
+    }
+
+}
+
 QSqlQueryModel * DB_Manager::getAllCourses(){
     QSqlQuery query;
     query.prepare("SELECT Course.courseName AS 'Course Name' , User.name AS 'Teacher' "
@@ -114,6 +142,11 @@ QSqlQueryModel * DB_Manager::getAllCourses(){
     QSqlQueryModel *model = new QSqlQueryModel();
     model->setQuery(query);
     return model;
+
+}
+
+
+QSqlQueryModel * DB_Manager::getEnrolledCourses(int userId){
 
 }
 

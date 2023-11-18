@@ -21,3 +21,15 @@ void MainWindow::on_BackButton_ExploreCoursesScreen_clicked()
     ui->stackedWidget->setCurrentIndex(DASHBOARD_SCREEN);
 }
 
+
+void MainWindow::on_EnrollButton_ExploreCoursesScreen_clicked()
+{
+    int courseId = ui->EnrollTextEdit_ExploreCoursesScreen->toPlainText().toInt();
+
+    QString error = middleware->enrollCourse(courseId);
+    if(error.size()){
+        QMessageBox::information(this , "error" , error);
+    }else{
+        QMessageBox::information(this , "Done" , "You enrolled in course successfully.");
+    }
+}

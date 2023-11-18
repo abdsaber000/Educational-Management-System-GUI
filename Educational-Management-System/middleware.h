@@ -21,7 +21,9 @@ public:
                    , QString confirmPassword , QString type);
     void logout();
     QString createCourse(QString courseName);
+    QString enrollCourse(int courseId);
     QString getAllCourses(QSqlQueryModel * & model);
+    QString getEnrolledCourses(QSqlQueryModel * & model);
     QString changeUserName(QString newName , QString password);
     QString changeUserEmail(QString newEmail , QString password);
     QString changeUserPassword(QString oldPassword , QString newPassword , QString confirmPassword);

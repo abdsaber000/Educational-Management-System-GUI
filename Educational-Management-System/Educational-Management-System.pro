@@ -18,6 +18,7 @@ SOURCES += \
     screens/change_password_screen.cpp \
     screens/create_course_screen.cpp \
     screens/dashboard_screen.cpp \
+    screens/enrolled_courses_screen.cpp \
     screens/explore_courses_screen.cpp \
     screens/login_screen.cpp \
     screens/settings_screen.cpp \

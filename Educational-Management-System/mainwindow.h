@@ -78,6 +78,10 @@ private slots:
 
     void on_ChangeButton_ChangePasswordScreen_clicked();
 
+    void on_ViewEnrolledCoursesButton_Dashboard_clicked();
+
+    void on_EnrollButton_ExploreCoursesScreen_clicked();
+
 private:
     Ui::MainWindow *ui;
     MiddleWare *middleware;
@@ -85,6 +89,7 @@ private:
     void DashboardStudent();
     void DashboardTeacher();
     void ExploreCourses();
+    void EnrolledCourses();
 
 };
 #endif // MAINWINDOW_H

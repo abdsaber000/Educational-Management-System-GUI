@@ -70,6 +70,16 @@ QString MiddleWare::createCourse(QString courseName){
     return "";
 }
 
+QString MiddleWare::enrollCourse(int courseId){
+    try{
+        if(!DB.isCourseExist(courseId)) return "course id is not valid.";
+        DB.addEnrollment(courseId , user->get_id());
+    }catch(QSqlError error){
+        return error.text();
+    }
+    return "";
+}
+
 QString MiddleWare::getAllCourses(QSqlQueryModel * &model){
     try{
         model = DB.getAllCourses();
@@ -77,6 +87,10 @@ QString MiddleWare::getAllCourses(QSqlQueryModel * &model){
         return error.text();
     }
     return "";
+}
+
+QString MiddleWare::getEnrolledCourses(QSqlQueryModel *&model){
+
 }
 
 QString MiddleWare::changeUserName(QString newName , QString password){
@@ -119,6 +133,8 @@ QString MiddleWare::changeUserPassword(QString oldPassword, QString newPassword,
     }
     return "";
 }
+
+
 
 /* getters and setters */
 
