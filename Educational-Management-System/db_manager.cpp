@@ -131,8 +131,8 @@ void DB_Manager::addEnrollment(int courseId , int userId){
 
 QSqlQueryModel * DB_Manager::getAllCourses(){
     QSqlQuery query;
-    query.prepare("SELECT Course.courseName AS 'Course Name' , User.name AS 'Teacher' "
-                  "FROM Course , User WHERE User.id = Course.teacherId");
+    query.prepare("SELECT Course.courseName AS 'Course Name' , User.name AS 'Teacher' , Course.courseId AS 'Course Id'\
+        FROM Course , User WHERE User.id = Course.teacherId");
 
 
     if(!query.exec()){
@@ -148,6 +148,36 @@ QSqlQueryModel * DB_Manager::getAllCourses(){
 
 QSqlQueryModel * DB_Manager::getEnrolledCourses(int userId){
 
+    QSqlQuery query;
+    query.prepare("SELECT Course.courseName AS 'Course Name' , User.name AS 'Teacher Name' , Course.courseId AS 'Course Id' \
+        FROM Course , User , Enrollments  \
+        WHERE Enrollments.courseId = Course.courseId AND Enrollments.studentId = :userId AND Course.teacherId = User.id");
+
+    query.bindValue(":userId" , userId);
+    if(!query.exec()){
+        throw query.lastError();
+    }
+
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery(query);
+    return model;
+}
+
+
+QSqlQueryModel * DB_Manager::getCreatedCourses(int userId){
+    QSqlQuery query;
+
+    query.prepare("SELECT Course.courseName as 'Course Name' , Course.courseId AS 'Course Id' FROM Course WHERE Course.teacherId = :userId");
+
+    query.bindValue(":userId" , userId);
+
+    if(!query.exec()){
+        throw query.lastError();
+    }
+
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery(query);
+    return model;
 }
 
 

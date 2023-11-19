@@ -19,12 +19,3 @@ MainWindow::~MainWindow()
 
 
 
-
-
-
-
-
-
-
-
-

@@ -30,6 +30,7 @@ public:
     void addEnrollment(int courseId , int userId);
     QSqlQueryModel * getAllCourses();
     QSqlQueryModel * getEnrolledCourses(int userId);
+    QSqlQueryModel * getCreatedCourses(int userId);
     void updateUserName(int userId , QString newName);
     void updateUserEmail(int userId , QString newEmail);
     void updateUserPassword(int userId , QString newPassword);

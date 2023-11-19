@@ -18,7 +18,7 @@ void MainWindow::ExploreCourses(){
 
 void MainWindow::on_BackButton_ExploreCoursesScreen_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(DASHBOARD_SCREEN);
+    DashboardScreen();
 }
 
 

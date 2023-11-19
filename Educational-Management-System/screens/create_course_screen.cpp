@@ -5,7 +5,7 @@
 void MainWindow::on_BackButton_CreateCourse_clicked()
 {
     ui->CourseNametextEdit_CreateCourse->setText("");
-    ui->stackedWidget->setCurrentIndex(DASHBOARD_SCREEN);
+    DashboardScreen();
 }
 
 

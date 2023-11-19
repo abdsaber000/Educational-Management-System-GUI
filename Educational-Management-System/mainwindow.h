@@ -16,7 +16,7 @@
 enum screens {WELCOME_SCREEN , LOGIN_SCREEN , SIGNUP_SCREEN , DASHBOARD_SCREEN
 , SETTINGS_SCREEN, VIEW_ENROLLED_COURSES_SCREEN, EXPLORE_COURSES_SCREEN
 , CREATE_COURSE_SCREEN , CHANGE_NAME_SCREEN , CHANGE_EMAIL_SCREEN
-, CHANGE_PASSWORD_SCREEN};
+, CHANGE_PASSWORD_SCREEN , VIEW_CREATED_COURSES_SCREEN};
 
 
 QT_BEGIN_NAMESPACE
@@ -82,6 +82,12 @@ private slots:
 
     void on_EnrollButton_ExploreCoursesScreen_clicked();
 
+    void on_BackButton_ExploreCoursesScreen_2_clicked();
+
+    void on_BackButton_CreatedCoursesScreen_clicked();
+
+    void on_ViewCreatedCoursesButton_Dashboard_clicked();
+
 private:
     Ui::MainWindow *ui;
     MiddleWare *middleware;
@@ -90,6 +96,7 @@ private:
     void DashboardTeacher();
     void ExploreCourses();
     void EnrolledCourses();
+    void CreatedCourses();
 
 };
 #endif // MAINWINDOW_H

@@ -24,6 +24,7 @@ public:
     QString enrollCourse(int courseId);
     QString getAllCourses(QSqlQueryModel * & model);
     QString getEnrolledCourses(QSqlQueryModel * & model);
+    QString getCreatedCourses(QSqlQueryModel * & model);
     QString changeUserName(QString newName , QString password);
     QString changeUserEmail(QString newEmail , QString password);
     QString changeUserPassword(QString oldPassword , QString newPassword , QString confirmPassword);

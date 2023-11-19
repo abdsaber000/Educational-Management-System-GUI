@@ -90,7 +90,21 @@ QString MiddleWare::getAllCourses(QSqlQueryModel * &model){
 }
 
 QString MiddleWare::getEnrolledCourses(QSqlQueryModel *&model){
+    try{
+        model = DB.getEnrolledCourses(user->get_id());
+    }catch(QSqlError error){
+        return error.text();
+    }
+    return "";
+}
 
+QString MiddleWare::getCreatedCourses(QSqlQueryModel *&model){
+    try{
+        model = DB.getCreatedCourses(user->get_id());
+    }catch(QSqlError error){
+        return error.text();
+    }
+    return "";
 }
 
 QString MiddleWare::changeUserName(QString newName , QString password){
