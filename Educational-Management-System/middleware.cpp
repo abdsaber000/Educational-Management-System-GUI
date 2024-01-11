@@ -80,6 +80,22 @@ QString MiddleWare::enrollCourse(int courseId){
     return "";
 }
 
+QString MiddleWare::selectCourse(QString courseId){
+    try{
+        std::vector<Course*> courses = DB.getCourse(courseId.toInt());
+        if(courses.empty())
+            return "course id is not found.";
+
+        assert(courses.size() == 1);
+
+        set_selectedCourse(courses.back());
+        set_isCourseSelected(true);
+    }catch(QSqlError error){
+        return error.text();
+    }
+    return "";
+}
+
 QString MiddleWare::getAllCourses(QSqlQueryModel * &model){
     try{
         model = DB.getAllCourses();
@@ -97,6 +113,18 @@ QString MiddleWare::getEnrolledCourses(QSqlQueryModel *&model){
     }
     return "";
 }
+
+QString MiddleWare::getStudentsInSelectedCourse(QSqlQueryModel *&model){
+    try{
+        if(!isCourseSelected) return "course is not selected!";
+        model = DB.getEnrolledStudents(selectedCourse->get_courseId());
+
+    }catch(QSqlError error){
+        return error.text();
+    }
+    return "";
+}
+
 
 QString MiddleWare::getCreatedCourses(QSqlQueryModel *&model){
     try{
@@ -148,7 +176,28 @@ QString MiddleWare::changeUserPassword(QString oldPassword, QString newPassword,
     return "";
 }
 
+QString MiddleWare::deleteUserCreatedCourse(QString courseId){
 
+    try{
+        if(!DB.isUserCreatedCourse(user->get_id() , courseId.toInt() )){
+            return "Course Id doesn't exist";
+        }
+        DB.deleteCreatedCourse(courseId.toInt());
+    }catch(QSqlError error){
+        return error.text();
+    }
+    return "";
+}
+
+QString MiddleWare::deleteStudentInCourse(int userId, int courseId){
+
+    try{
+        DB.deleteEnrollment(userId , courseId);
+    }catch(QSqlError error){
+        return error.text();
+    }
+    return "";
+}
 
 /* getters and setters */
 
@@ -169,6 +218,10 @@ QString MiddleWare::get_user_type(){
     return user->get_type();
 }
 
+Course * MiddleWare::get_selectedCourse(){
+    return selectedCourse;
+}
+
 void MiddleWare::set_isLogged(bool status){
     this->isLogged = status;
 }
@@ -177,10 +230,17 @@ void MiddleWare::set_user(User *user){
     this->user = user;
 }
 
+void MiddleWare::set_isCourseSelected(bool status){
+    this->isCourseSelected = status;
+}
+
+void MiddleWare::set_selectedCourse(Course *course){
+    this->selectedCourse = course;
+}
 /* initialization */
 
 bool MiddleWare::isLogged = false;
 User* MiddleWare::user = new User();
 DB_Manager MiddleWare::DB = DB_Manager(PATH);
-
-
+Course* MiddleWare::selectedCourse = new Course();
+bool MiddleWare::isCourseSelected = false;

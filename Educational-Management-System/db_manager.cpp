@@ -94,6 +94,25 @@ bool DB_Manager::isCourseExist(int courseId){
     return false;
 }
 
+bool DB_Manager::isUserCreatedCourse(int userId, int courseId){
+    QSqlQuery query;
+
+    query.prepare("SELECT * FROM Course WHERE courseId = :courseId AND teacherId = :userId");
+
+    query.bindValue(":courseId" , courseId);
+    query.bindValue(":userId" , userId);
+
+    if(query.exec()){
+        if(query.next()){
+            return true;
+        }
+        return false;
+    }else{
+        throw query.lastError();
+    }
+    return false;
+}
+
 void DB_Manager::addUser(QString name, QString email, QString password, QString type){
     QSqlQuery query;
     query.prepare("INSERT INTO User (name , email , password, type) VALUES (:name, :email , :password , :type)");
@@ -163,6 +182,25 @@ QSqlQueryModel * DB_Manager::getEnrolledCourses(int userId){
     return model;
 }
 
+QSqlQueryModel * DB_Manager::getEnrolledStudents(int courseId){
+
+    QSqlQuery query;
+    query.prepare("SELECT User.name AS 'Student Name', User.id AS 'Student Id'\
+        FROM User , Enrollments \
+        WHERE User.id = Enrollments.studentId AND Enrollments.courseId = :courseId");
+
+    query.bindValue(":courseId" , courseId);
+
+    if(!query.exec()){
+        throw query.lastError();
+    }
+
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery(query);
+    return model;
+}
+
+
 
 QSqlQueryModel * DB_Manager::getCreatedCourses(int userId){
     QSqlQuery query;
@@ -180,6 +218,31 @@ QSqlQueryModel * DB_Manager::getCreatedCourses(int userId){
     return model;
 }
 
+std::vector<Course *> DB_Manager::getCourse(int courseId){
+    QSqlQuery query;
+
+    query.prepare("SELECT * FROM Course WHERE Course.courseId = :courseId");
+    query.bindValue(":courseId" , courseId);
+    if(query.exec()){
+        std::vector<Course*> query_results;
+        int courseIdIndex = query.record().indexOf("courseId");
+        int teacherIdIndex = query.record().indexOf("teacherId");
+        int courseNameIndex = query.record().indexOf("courseName");
+
+        while(query.next()){
+
+            QString name = codec->toUnicode(query.value(courseNameIndex).toByteArray());
+            int course_id = query.value(courseIdIndex).toInt();
+            int teacher_id = query.value(teacherIdIndex).toInt();
+            query_results.push_back(new Course(courseId , teacher_id , name));
+        }
+
+        return query_results;
+    }else throw query.lastError();
+
+    return {};
+
+}
 
 void DB_Manager::updateUserName(int userId , QString userName){
 
@@ -211,6 +274,27 @@ void DB_Manager::updateUserPassword(int userId, QString newPassword){
 
     query.bindValue(":password" , newPassword);
     query.bindValue(":id" , userId);
+    if(!query.exec())
+        throw query.lastError();
+}
+
+void DB_Manager::deleteCreatedCourse(int courseId){
+    QSqlQuery query;
+
+    query.prepare("DELETE FROM Course WHERE Course.courseId = :courseId");
+    query.bindValue(":courseId" , courseId);
+
+    if(!query.exec())
+        throw query.lastError();
+}
+
+void DB_Manager::deleteEnrollment(int userId, int courseId){
+    QSqlQuery query;
+    query.prepare("DELETE FROM Enrollments WHERE Enrollments.courseId = :courseId AND Enrollments.studentId = :studentId");
+
+    query.bindValue(":courseId" , courseId);
+    query.bindValue(":studentId" , userId);
+
     if(!query.exec())
         throw query.lastError();
 }
