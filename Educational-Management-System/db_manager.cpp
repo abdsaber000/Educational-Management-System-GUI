@@ -20,7 +20,8 @@ DB_Manager::DB_Manager(){
 
 std::vector<User*> DB_Manager::getUser_EmailPassword(QString email , QString password){
     QSqlQuery query;
-    QString command = "SELECT * FROM User WHERE email = :email AND password = :password";
+    QString command = "SELECT * FROM User WHERE email = :email \
+        AND password = :password";
     query.prepare(command);
     query.bindValue(":email" , email);
     query.bindValue(":password" , password);
@@ -97,7 +98,8 @@ bool DB_Manager::isCourseExist(int courseId){
 bool DB_Manager::isUserCreatedCourse(int userId, int courseId){
     QSqlQuery query;
 
-    query.prepare("SELECT * FROM Course WHERE courseId = :courseId AND teacherId = :userId");
+    query.prepare("SELECT * FROM Course \
+        WHERE courseId = :courseId AND teacherId = :userId");
 
     query.bindValue(":courseId" , courseId);
     query.bindValue(":userId" , userId);
@@ -115,7 +117,8 @@ bool DB_Manager::isUserCreatedCourse(int userId, int courseId){
 
 void DB_Manager::addUser(QString name, QString email, QString password, QString type){
     QSqlQuery query;
-    query.prepare("INSERT INTO User (name , email , password, type) VALUES (:name, :email , :password , :type)");
+    query.prepare("INSERT INTO User (name , email , password, type) \
+        VALUES (:name, :email , :password , :type)");
     query.bindValue(":name" , name);
     query.bindValue(":email" , email);
     query.bindValue(":password" , password);
@@ -128,7 +131,8 @@ void DB_Manager::addUser(QString name, QString email, QString password, QString 
 void DB_Manager::addCourse(QString courseName , int teacherId){
     QSqlQuery query;
 
-    query.prepare("INSERT INTO Course (courseName , teacherId) VALUES (:courseName , :teacherId)");
+    query.prepare("INSERT INTO Course (courseName , teacherId) \
+        VALUES (:courseName , :teacherId)");
     query.bindValue(":courseName" , courseName);
     query.bindValue(":teacherId" , teacherId);
     if(!query.exec()){
@@ -138,7 +142,8 @@ void DB_Manager::addCourse(QString courseName , int teacherId){
 
 void DB_Manager::addEnrollment(int courseId , int userId){
     QSqlQuery query;
-    query.prepare("INSERT INTO Enrollments (studentId , courseId) VALUES (:studentId , :courseId)");
+    query.prepare("INSERT INTO Enrollments (studentId , courseId) \
+        VALUES (:studentId , :courseId)");
     query.bindValue(":studentId" , userId);
     query.bindValue(":courseId" , courseId);
 
@@ -150,7 +155,8 @@ void DB_Manager::addEnrollment(int courseId , int userId){
 
 QSqlQueryModel * DB_Manager::getAllCourses(){
     QSqlQuery query;
-    query.prepare("SELECT Course.courseName AS 'Course Name' , User.name AS 'Teacher' , Course.courseId AS 'Course Id'\
+    query.prepare("SELECT Course.courseName AS 'Course Name' , \
+        User.name AS 'Teacher' , Course.courseId AS 'Course Id'\
         FROM Course , User WHERE User.id = Course.teacherId");
 
 
@@ -168,9 +174,11 @@ QSqlQueryModel * DB_Manager::getAllCourses(){
 QSqlQueryModel * DB_Manager::getEnrolledCourses(int userId){
 
     QSqlQuery query;
-    query.prepare("SELECT Course.courseName AS 'Course Name' , User.name AS 'Teacher Name' , Course.courseId AS 'Course Id' \
+    query.prepare("SELECT Course.courseName AS 'Course Name' ,\
+     User.name AS 'Teacher Name' , Course.courseId AS 'Course Id' \
         FROM Course , User , Enrollments  \
-        WHERE Enrollments.courseId = Course.courseId AND Enrollments.studentId = :userId AND Course.teacherId = User.id");
+        WHERE Enrollments.courseId = Course.courseId \
+        AND Enrollments.studentId = :userId AND Course.teacherId = User.id");
 
     query.bindValue(":userId" , userId);
     if(!query.exec()){
@@ -187,7 +195,8 @@ QSqlQueryModel * DB_Manager::getEnrolledStudents(int courseId){
     QSqlQuery query;
     query.prepare("SELECT User.name AS 'Student Name', User.id AS 'Student Id'\
         FROM User , Enrollments \
-        WHERE User.id = Enrollments.studentId AND Enrollments.courseId = :courseId");
+        WHERE User.id = Enrollments.studentId \
+        AND Enrollments.courseId = :courseId");
 
     query.bindValue(":courseId" , courseId);
 
@@ -205,7 +214,9 @@ QSqlQueryModel * DB_Manager::getEnrolledStudents(int courseId){
 QSqlQueryModel * DB_Manager::getCreatedCourses(int userId){
     QSqlQuery query;
 
-    query.prepare("SELECT Course.courseName as 'Course Name' , Course.courseId AS 'Course Id' FROM Course WHERE Course.teacherId = :userId");
+    query.prepare("SELECT Course.courseName as 'Course Name' , \
+    Course.courseId AS 'Course Id' FROM Course \
+    WHERE Course.teacherId = :userId");
 
     query.bindValue(":userId" , userId);
 
@@ -290,7 +301,9 @@ void DB_Manager::deleteCreatedCourse(int courseId){
 
 void DB_Manager::deleteEnrollment(int userId, int courseId){
     QSqlQuery query;
-    query.prepare("DELETE FROM Enrollments WHERE Enrollments.courseId = :courseId AND Enrollments.studentId = :studentId");
+    query.prepare("DELETE FROM Enrollments \
+        WHERE Enrollments.courseId = :courseId \
+        AND Enrollments.studentId = :studentId");
 
     query.bindValue(":courseId" , courseId);
     query.bindValue(":studentId" , userId);
